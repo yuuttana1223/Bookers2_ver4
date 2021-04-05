@@ -1,0 +1,13 @@
+<% if message.errors.any? %>
+  <div id="error_explanation">
+    <h2 class=" text-danger">
+      <%= pluralize(message.errors.count, "error") %>
+      prohibited this message from being saved:
+    </h2>
+    <ul>
+      <% message.errors.full_messages.each do |msg| %>
+        <li class="text-danger"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

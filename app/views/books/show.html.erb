@@ -1,0 +1,23 @@
+<%= render "layouts/error_messages", message: @book %>
+<div class="row">
+  <div class='col-md-3'>
+    <%= render "users/user_info", user: @user %>
+    <%= render "books/new_book", book: @new_book %>
+  </div>
+  <div class="col-md-8 offset-md-1">
+    <%= render "books/book_table", book: @book %>
+    <% @book_comments.each do |book_comment| %>
+      <% if @book.id == book_comment.book_id %>
+        <div class="">
+          <%= attachment_image_tag book_comment.user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "40x40" %>
+          <%= book_comment.comment %>
+          <% if book_comment.user_id == current_user.id %>
+            <%= link_to "Destroy", book_book_comment_path(@book.id, book_comment.id), method: :delete, class: "btn-sm btn-danger" %>
+          <% end %>
+        </div>
+        <%= link_to book_comment.user.name, user_path(book_comment.user_id) %>
+      <% end %>
+    <% end %>
+    <%= render "book_comments/new_book_comment", { book: @book, book_comment: @book_comment } %>
+  </div>
+</div>
