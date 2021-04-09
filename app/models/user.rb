@@ -36,4 +36,17 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
     # self.relationships.where(follower_id: self.id, followed_id: other_user.id).exists?
   end
+
+  def self.search_for(pattern_match, search_word)
+    case pattern_match
+    when "perfect_match"
+      User.where("name like ?", search_word)
+    when "forward_match"
+      User.where("name like ?", "#{search_word}%")
+    when "backward_match"
+      User.where("name like ?", "%#{search_word}")
+    when "partial_match"
+      User.where("name like ?", "%#{search_word}%")
+    end
+  end
 end

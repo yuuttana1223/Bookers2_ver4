@@ -1,0 +1,12 @@
+
+<% if @books %>
+  <h2>Books search for "<%= @search_word %>"</h2>
+  <% if @books.exists? %>
+    <%= render "books/books_table", books: @books %>
+  <% end %>
+<% elsif @users %>
+  <h2>Users search for "<%= @search_word %>"</h2>
+  <% if @users.exists? %>
+    <%= render "users/users_table", users: @users %>
+  <% end %>
+<% end %>

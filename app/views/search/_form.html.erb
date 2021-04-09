@@ -1,0 +1,6 @@
+<%= form_with(url: search_path, method: :get, local: true, class: "text-center mt-1") do |f| %>
+  <%= f.text_field :search_word %>
+  <%= f.select :model, { "User": "user", "Book": "book" } %>
+  <%= f.select :pattern_match, { "完全一致": "perfect_match", "前方一致": "forward_match", "後方一致": "backward_match", "部分一致": "partial_match" } %>
+  <%= f.submit "検索" %>
+<% end %>

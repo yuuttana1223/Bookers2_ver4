@@ -5,17 +5,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track': "reload" %>
   </head>
 
   <body>
     <header>
       <%= render "layouts/navbar" %>
+      <%= render "layouts/flash_messages" %>
+      <% if user_signed_in? %>
+        <%= render "search/form" %>
+      <% end %>
     </header>
 
     <main>
-      <%= render "layouts/flash_messages" %>
       <div class="container px-5 px-sm-0 mt-3">
         <%= yield %>
       </div>
